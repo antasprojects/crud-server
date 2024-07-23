@@ -1,6 +1,8 @@
+const { response } = require("../app");
 const Fruit = require("../models/Fruit");
 
 const index = (req, res) => {
+  console.log(req,response);
   try {
     const fruits = Fruit.showAll();
     res.status(200).send(fruits);
@@ -11,6 +13,7 @@ const index = (req, res) => {
 
 const show = async (req, res) => {
   const name = req.params.name.toLowerCase();
+  console.log(req,response);
 
   try {
     const fruit = await Fruit.show(name);
@@ -18,9 +21,12 @@ const show = async (req, res) => {
   } catch (err) {
     res.status(404).send({ error: err });
   }
+
 };
 
 const create = async (req, res) => {
+  console.log(req,response);
+
   const data = req.body;
   try {
     // 1. Call a method from the model
@@ -34,6 +40,8 @@ const create = async (req, res) => {
 };
 
 const update = async (req, res) => {
+  console.log(req,response);
+
   const data = req.body;
   const name = req.params.name.toLowerCase();
 
@@ -47,6 +55,7 @@ const update = async (req, res) => {
 };
 
 const destroy = async (req, res) => {
+  console.log(req,response);
   const name = req.params.name.toLowerCase();
 
   try {
