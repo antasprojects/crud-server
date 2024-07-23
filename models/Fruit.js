@@ -42,11 +42,19 @@ class Fruit {
 
     static create(data) {
 
-        const newFruitData = data
+        const newFruit = data
 
-        fruits.push(newFruitData)
+        const fruit = fruits.find((fruit) => fruit.name.toLowerCase() == data.name.toLowerCase());
 
-        return new Fruit(newFruitData)
+
+        if (fruit) {
+            throw "The fruit already exists.";
+        } else {
+            newFruit["id"] = fruits.length + 1;
+            fruits.push(newFruit);
+      
+            return new Fruit(newFruit)
+        }
     }
 
     update(data) {
