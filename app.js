@@ -1,4 +1,5 @@
 const express = require('express')
+cors = require('cors')
 const app = express()
 const {index, show} = require("./controllers/fruits.js")
 const Fruit = require('./models/Fruit.js')
@@ -11,8 +12,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.use(express.json())
 
+// CORS
+app.use(cors())
+app.use(express.json())
 app.use("/fruits", fruitRouter)
 
 
